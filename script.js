@@ -1,24 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize AOS Animation
     AOS.init({
         duration: 1000,
         once: true,
     });
-
-    // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu-overlay');
     const navLinks = document.querySelectorAll('.mobile-nav-links a');
 
     menuToggle.addEventListener('click', () => {
         mobileMenu.classList.toggle('active');
-        // Change icon
         const icon = menuToggle.querySelector('i');
         icon.classList.toggle('fa-bars');
         icon.classList.toggle('fa-times');
     });
-
-    // Close menu when link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
@@ -27,11 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.remove('fa-times');
         });
     });
-
-    // Active Link on Scroll
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
-
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
@@ -49,8 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Scroll Effect on Header
     window.addEventListener('scroll', () => {
         const header = document.querySelector('.main-header');
         if (window.scrollY > 50) {
@@ -62,10 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-// Counter Animation for About Section
 const counters = document.querySelectorAll('.number');
 const speed = 200;
-
 const startCounters = () => {
     counters.forEach(counter => {
         const updateCount = () => {
@@ -83,8 +70,6 @@ const startCounters = () => {
         updateCount();
     });
 };
-
-// تشغيل العداد عند الوصول للسكشن
 const aboutSection = document.querySelector('.about-section');
 let observer = new IntersectionObserver((entries) => {
     if(entries[0].isIntersecting) {
@@ -92,21 +77,16 @@ let observer = new IntersectionObserver((entries) => {
         observer.unobserve(aboutSection);
     }
 }, { threshold: 0.5 });
-
 observer.observe(aboutSection);
-// إضافة تأخير عشوائي لكل عنصر عشان "يطفو" بشكل مختلف عن اللي جنبه
 document.querySelectorAll('.n-item').forEach(item => {
     item.style.animationDelay = Math.random() * 2 + 's';
-    
-    // حركة تتبع الماوس داخل العنصر
-    item.addEventListener('mousemove', (e) => {
+        item.addEventListener('mousemove', (e) => {
         let x = e.pageX - item.offsetLeft;
         let y = e.pageY - item.offsetTop;
         item.style.setProperty('--x', x + 'px');
         item.style.setProperty('--y', y + 'px');
     });
 });
-// تأثير الضوء المتحرك مع الماوس في سكشن لماذا نحن
 document.querySelectorAll('.power-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
